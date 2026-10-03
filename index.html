@@ -154,74 +154,65 @@
             transition: all 0.25s ease;
         }
         #focusOverlay.active { display: flex; }
+        
+        /* حالت مینی دست‌نخورده و فیکس */
         #focusOverlay.mini-mode {
             top: auto;
             left: auto;
             right: 25px;
             bottom: 25px;
-            width: 320px;
-            height: 220px;
-            border-radius: 12px;
+            width: 380px;
+            height: 260px;
+            border-radius: 16px;
             background-color: #0b1120;
             border: 1px solid #334155;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.8);
-            padding: 12px 16px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.85);
+            padding: 16px 20px;
         }
-        #focusOverlay.mini-mode .focus-top-bar { margin-bottom: 5px; }
+        #focusOverlay.mini-mode .focus-top-bar { margin-bottom: 8px; }
         #focusOverlay.mini-mode .studiestimer-nav,
         #focusOverlay.mini-mode .preset-pills,
         #focusOverlay.mini-mode .timer-subtitle,
         #focusOverlay.mini-mode .timer-labels,
         #focusOverlay.mini-mode #focusCourseBadge,
         #focusOverlay.mini-mode .top-left-clock-container { display: none !important; }
-        #focusOverlay.mini-mode .big-timer-digits { font-size: 3.2rem; letter-spacing: 2px; margin: 10px 0; }
-        #focusOverlay.mini-mode .start-timer-btn-main { padding: 6px 20px; font-size: 0.85rem; }
-        #focusOverlay.mini-mode .secondary-controls { margin-top: 5px; }
+        
+        #focusOverlay.mini-mode .big-timer-digits { font-size: 3.5rem; letter-spacing: 2px; margin: 12px 0; }
+        #focusOverlay.mini-mode .start-timer-btn-main { padding: 8px 24px; font-size: 0.9rem; }
+        #focusOverlay.mini-mode .secondary-controls { margin-top: 8px; }
         #focusOverlay.mini-mode .mini-expand-btn { display: inline-block !important; }
         .mini-expand-btn { display: none; }
 
         .focus-top-bar { display: flex; justify-content: space-between; align-items: center; width: 100%; }
         
-        /* روز و ساعت رسمی در یک خط + ساعت عقربه‌ای زیر آن در گوشه سمت چپ */
+        /* کانتینر ساعت دیجیتال رسمی و بزرگ در حالت عادی/تمام صفحه */
         .top-left-clock-container {
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            gap: 8px;
-            background: rgba(15, 23, 42, 0.7);
-            border: 1px solid #1e293b;
-            padding: 10px 14px;
-            border-radius: 14px;
+            gap: 4px;
+            background: rgba(15, 23, 42, 0.95);
+            border: 1px solid #334155;
+            padding: 15px 25px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
         }
-        .date-time-row {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 15px;
-            font-weight: 600;
-            color: #ffffff;
+        .digital-time-main {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #38bdf8;
+            letter-spacing: 2px;
+            line-height: 1;
+            font-variant-numeric: tabular-nums;
+        }
+        .date-info-sub {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #94a3b8;
             letter-spacing: 0.5px;
+            display: flex;
+            gap: 12px;
         }
-        .analog-clock {
-            width: 75px;
-            height: 75px;
-            border: 3px solid #ff4d4d;
-            border-radius: 50%;
-            position: relative;
-            background: rgba(0, 0, 0, 0.4);
-            margin: 0 auto;
-        }
-        .analog-clock .hand {
-            position: absolute;
-            bottom: 50%;
-            left: 50%;
-            transform-origin: bottom;
-            background: #fff;
-            border-radius: 2px;
-        }
-        .hour-hand { width: 2.5px; height: 20px; background: #cbd5e1; transform: translateX(-50%) rotate(0deg); }
-        .minute-hand { width: 2px; height: 28px; background: #38bdf8; transform: translateX(-50%) rotate(0deg); }
-        .second-hand { width: 1px; height: 30px; background: #ef4444; transform: translateX(-50%) rotate(0deg); }
 
         .studiestimer-nav { background-color: #0b1120; border: 1px solid #1e293b; border-radius: 30px; padding: 4px; display: flex; gap: 4px; }
         .studiestimer-nav-btn { background: transparent; border: none; color: #94a3b8; padding: 6px 18px; border-radius: 20px; font-size: 0.85rem; font-weight: 500; transition: all 0.2s; cursor: pointer; display: flex; align-items: center; gap: 6px; }
@@ -275,16 +266,12 @@
 <!-- Studiestimer Overlay -->
 <div id="focusOverlay">
     <div class="focus-top-bar">
-        <!-- روز و ساعت رسمی در یک خط + ساعت عقربه‌ای زیر آن -->
         <div class="top-left-clock-container">
-            <div class="date-time-row">
-                <span id="day-name">شنبه</span>
-                <span id="digital-clock">00:00:00 PM</span>
-            </div>
-            <div class="analog-clock">
-                <div class="hand hour-hand" id="hour-hand"></div>
-                <div class="hand minute-hand" id="minute-hand"></div>
-                <div class="hand second-hand" id="second-hand"></div>
+            <div class="digital-time-main" id="digital-clock">00:00:00</div>
+            <div class="date-info-sub">
+                <span id="day-name-en">Sunday</span>
+                <span>•</span>
+                <span id="shamsi-date-display">1405/--/--</span>
             </div>
         </div>
 
@@ -343,7 +330,6 @@
     <div class="d-flex justify-content-between align-items-center mb-4 no-print">
         <div>
             <h2 class="fw-bold text-primary mb-1"><i class="fa-solid fa-clipboard-list me-2"></i>سامانه ثبت و صدور گزارش کار روزانه</h2>
-            <p class="text-muted m-0">بر اساس قالب استاندارد گزارش کار Sadqe Shabani</p>
         </div>
         <button type="button" class="btn btn-outline-secondary rounded-pill px-3" id="themeToggleBtn" onclick="toggleTheme()">
             <i class="fa-solid fa-moon me-1" id="themeIcon"></i> <span id="themeText">حالت تاریک</span>
@@ -390,7 +376,7 @@
                             <option value="شنبه">شنبه</option>
                             <option value="یکشنبه">یکشنبه</option>
                             <option value="دوشنبه">دوشنبه</option>
-                            <option value="سه‌شنبه" selected>سه‌شنبه</option>
+                            <option value="سه‌شنبه" selected>سه‌‌شنبه</option>
                             <option value="چهارشنبه">چهارشنبه</option>
                             <option value="پنج‌شنبه">پنج‌شنبه</option>
                             <option value="جمعه">جمعه</option>
@@ -416,7 +402,7 @@
                     <div class="col-md-4">
                         <label class="form-label">از جلسه مشاوره</label>
                         <div class="input-group">
-                            <span class="input-group-text bg-secondary text-white border-secondary">سه‌‌شنبه</span>
+                            <span class="input-group-text bg-secondary text-white border-secondary">سه‌شنبه</span>
                             <input type="text" class="form-control save-auto" id="fromSession" placeholder="1405/--/--">
                         </div>
                     </div>
@@ -713,7 +699,7 @@
                         <div class="col-3">تایم مفید (کرنومتر): <b id="pv-c2-useful">-</b></div>
                         <div class="col-3">استراحت/اتلاف وقت: <span id="pv-c2-wasted">-</span></div>
                         <div class="col-3">بازدهی مطالعه: <b id="pv-c2-efficiency">-</b></div>
-                        <div class="col-12 mt-1">پارت‌های تست‌زنی: <div id="pv-c2-tests" class="text-muted small">-</div></div>
+                        <div class="col-12 mt-1">پارت‌های تست‌‌زنی: <div id="pv-c2-tests" class="text-muted small">-</div></div>
                         <div class="col-12 mt-1">توضیحات: <span id="pv-c2-desc">-</span></div>
                     </div>
                 </div>
@@ -727,7 +713,7 @@
                         <div class="col-3">تایم مفید (کرنومتر): <b id="pv-c3-useful">-</b></div>
                         <div class="col-3">استراحت/اتلاف وقت: <span id="pv-c3-wasted">-</span></div>
                         <div class="col-3">بازدهی مطالعه: <b id="pv-c3-efficiency">-</b></div>
-                        <div class="col-12 mt-1">پارت‌های تست‌زنی: <div id="pv-c3-tests" class="text-muted small">-</div></div>
+                        <div class="col-12 mt-1">پارت‌های تست‌‌زنی: <div id="pv-c3-tests" class="text-muted small">-</div></div>
                         <div class="col-12 mt-1">توضیحات: <span id="pv-c3-desc">-</span></div>
                     </div>
                 </div>
@@ -773,7 +759,7 @@
 <script>
     let currentStep = 1;
     const totalSteps = 6;
-    const STORAGE_KEY = 'sadqe_report_form_data_v11';
+    const STORAGE_KEY = 'sadqe_report_form_data_v12';
 
     let currentCourseIndex = null;
     let timerInterval = null;
@@ -809,36 +795,27 @@
         updateThemeButtonUI(savedTheme);
     }
 
-    /* === CLOCKS UPDATE (Digital & Analog) === */
+    /* === UPDATE CLOCKS & DATES === */
     function updateClocks() {
         const now = new Date();
         const digitalClock = document.getElementById('digital-clock');
         if (digitalClock) {
-            digitalClock.innerText = now.toLocaleTimeString('en-US', { hour12: true });
+            digitalClock.innerText = now.toLocaleTimeString('en-GB', { hour12: false });
         }
 
-        const days = ['یکشنبه', 'دوشنبه', 'سه‌شنبه', 'چهارشنبه', 'پنج‌شنبه', 'جمعه', 'شنبه'];
-        const dayEl = document.getElementById('day-name');
-        if (dayEl) {
-            dayEl.innerText = days[now.getDay()];
+        const daysEn = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        const dayElEn = document.getElementById('day-name-en');
+        if (dayElEn) {
+            dayElEn.innerText = daysEn[now.getDay()];
         }
 
-        const hours = now.getHours() % 12;
-        const minutes = now.getMinutes();
-        const seconds = now.getSeconds();
-
-        const hourDeg = (hours * 30) + (minutes * 0.5);
-        const minDeg = (minutes * 6);
-        const secDeg = (seconds * 6);
-
-        const hHand = document.getElementById('hour-hand');
-        const mHand = document.getElementById('minute-hand');
-        const sHand = document.getElementById('second-hand');
-
-        if (hHand && mHand && sHand) {
-            hHand.style.transform = `translateX(-50%) rotate(${hourDeg}deg)`;
-            mHand.style.transform = `translateX(-50%) rotate(${minDeg}deg)`;
-            sHand.style.transform = `translateX(-50%) rotate(${secDeg}deg)`;
+        const shamsiDateEl = document.getElementById('shamsi-date-display');
+        if (shamsiDateEl) {
+            try {
+                shamsiDateEl.innerText = new persianDate().format('YYYY/MM/DD');
+            } catch (e) {
+                shamsiDateEl.innerText = '';
+            }
         }
     }
     setInterval(updateClocks, 1000);
